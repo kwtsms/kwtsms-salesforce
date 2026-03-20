@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>kwtSMS</label>
+    <description>kwtSMS SMS Gateway Integration</description>
+    <formFactors>
+        <formFactor>Large</formFactor>
+    </formFactors>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>KwtSMS</tabs>
+</CustomApplication>

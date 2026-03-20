@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Tab labels -->
+    <labels>
+        <fullName>KwtSMS_Tab_Dashboard</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab: Dashboard</shortDescription>
+        <value>Dashboard</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Tab_Settings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab: Settings</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Tab_Gateway</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab: Gateway</shortDescription>
+        <value>Gateway</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Tab_Logs</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab: Logs</shortDescription>
+        <value>Logs</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Tab_Help</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab: Help</shortDescription>
+        <value>Help</value>
+    </labels>
+    <!-- Button labels -->
+    <labels>
+        <fullName>KwtSMS_Btn_Login</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Login</shortDescription>
+        <value>Login</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_Logout</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Logout</shortDescription>
+        <value>Logout</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_Reload</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Reload</shortDescription>
+        <value>Reload</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_SendTestSMS</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Send Test SMS</shortDescription>
+        <value>Send Test SMS</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_ResetToDefault</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Reset to Default</shortDescription>
+        <value>Reset to Default</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_AddRecipient</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Add Recipient</shortDescription>
+        <value>Add Recipient</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_ClearLogs</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Clear Logs</shortDescription>
+        <value>Clear Logs</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_EditTemplateEN</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Edit Template EN</shortDescription>
+        <value>Edit Template EN</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_EditTemplateAR</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Edit Template AR</shortDescription>
+        <value>Edit Template AR</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_Delete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Btn_ViewAllLogs</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button: View All Logs</shortDescription>
+        <value>View All Logs</value>
+    </labels>
+    <!-- Status labels -->
+    <labels>
+        <fullName>KwtSMS_Status_Connected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Connected</shortDescription>
+        <value>Connected</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Disconnected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Disconnected</shortDescription>
+        <value>Disconnected</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Enabled</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Enabled</shortDescription>
+        <value>Enabled</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Disabled</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Disabled</shortDescription>
+        <value>Disabled</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Sent</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Sent</shortDescription>
+        <value>Sent</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Failed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Failed</shortDescription>
+        <value>Failed</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Skipped</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Skipped</shortDescription>
+        <value>Skipped</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_On</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: On</shortDescription>
+        <value>ON</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Status_Off</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status: Off</shortDescription>
+        <value>OFF</value>
+    </labels>
+    <!-- Form labels -->
+    <labels>
+        <fullName>KwtSMS_Label_Username</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_Password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Password</shortDescription>
+        <value>Password</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_Phone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Message</shortDescription>
+        <value>Message</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_SenderID</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Sender ID</shortDescription>
+        <value>Sender ID</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_TestMode</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Test Mode</shortDescription>
+        <value>Test Mode</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_DebugLogging</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Debug Logging</shortDescription>
+        <value>Debug Logging</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_GatewayEnabled</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Gateway Enabled</shortDescription>
+        <value>Gateway Enabled</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_DefaultLanguage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Default Language</shortDescription>
+        <value>Default Language</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_DefaultCountryCode</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Default Country Code</shortDescription>
+        <value>Default Country Code</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_Balance</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Balance</shortDescription>
+        <value>Balance</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_LastSync</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Last Sync</shortDescription>
+        <value>Last Sync</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_Active</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Active</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_NotifyCustomer</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Notify Customer</shortDescription>
+        <value>Notify Customer</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Label_NotifyAdmin</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label: Notify Admin</shortDescription>
+        <value>Notify Admin</value>
+    </labels>
+    <!-- Dashboard labels -->
+    <labels>
+        <fullName>KwtSMS_Dashboard_SentToday</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Sent Today</shortDescription>
+        <value>Sent Today</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_FailedToday</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Failed Today</shortDescription>
+        <value>Failed Today</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_SkippedToday</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Skipped Today</shortDescription>
+        <value>Skipped Today</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_SentWeek</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Sent This Week</shortDescription>
+        <value>Sent This Week</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_FailedWeek</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Failed This Week</shortDescription>
+        <value>Failed This Week</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_SkippedWeek</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Skipped This Week</shortDescription>
+        <value>Skipped This Week</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_RecentActivity</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Recent Activity</shortDescription>
+        <value>Recent Activity</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_ActiveConfig</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Active Configuration</shortDescription>
+        <value>Active Configuration</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_AdminRecipients</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Admin Recipients</shortDescription>
+        <value>Admin Recipients</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_GatewayStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: Gateway Status</shortDescription>
+        <value>Gateway Status</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Dashboard_SMSEnabled</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Dashboard: SMS Enabled</shortDescription>
+        <value>SMS Enabled</value>
+    </labels>
+    <!-- Error labels -->
+    <labels>
+        <fullName>KwtSMS_Error_LoginFailed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Login Failed</shortDescription>
+        <value>Login failed. Please check your username and password.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Error_InvalidPhone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Invalid Phone</shortDescription>
+        <value>Invalid phone number format.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Error_GatewayNotConfigured</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Gateway Not Configured</shortDescription>
+        <value>Gateway is not configured. Please login first.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Error_GatewayDisabled</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Gateway Disabled</shortDescription>
+        <value>SMS gateway is disabled.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Error_ZeroBalance</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Zero Balance</shortDescription>
+        <value>Insufficient balance. Please top up your kwtSMS account.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Error_SendFailed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Send Failed</shortDescription>
+        <value>Failed to send SMS. Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Error_DuplicatePhone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error: Duplicate Phone</shortDescription>
+        <value>This phone number already exists.</value>
+    </labels>
+    <!-- Help labels -->
+    <labels>
+        <fullName>KwtSMS_Help_Welcome</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Welcome</shortDescription>
+        <value>kwtSMS SMS Gateway for Salesforce</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Description</shortDescription>
+        <value>Send SMS notifications to customers and admins for orders, cases, and more through the kwtSMS gateway.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Step1</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Step 1</shortDescription>
+        <value>Sign up for a kwtSMS account at kwtsms.com</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Step2</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Step 2</shortDescription>
+        <value>Get your API credentials (username and password) from your kwtSMS dashboard</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Step3</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Step 3</shortDescription>
+        <value>Go to the Gateway tab and login with your credentials</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Step4</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Step 4</shortDescription>
+        <value>Register a private Sender ID (contact kwtSMS support)</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Step5</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Step 5</shortDescription>
+        <value>Go to Settings tab, enable Gateway, configure notification events</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Step6</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Step 6</shortDescription>
+        <value>Send a test SMS from the Gateway tab to verify</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_TestModeInfo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Test Mode Info</shortDescription>
+        <value>Test Mode sends to the real API but does not deliver to handsets. Delete test messages from your kwtSMS queue to recover credits.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_SenderIDInfo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Sender ID Info</shortDescription>
+        <value>KWT-SMS is a shared test sender. Register your own private Sender ID before going live.</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_ArabicInfo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Arabic Info</shortDescription>
+        <value>Arabic messages use 70 characters per page (vs 160 for English).</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Help_Version</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help: Version</shortDescription>
+        <value>Version</value>
+    </labels>
+    <!-- Template modal labels -->
+    <labels>
+        <fullName>KwtSMS_Template_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Title</shortDescription>
+        <value>Edit Template</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Template_Characters</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Characters</shortDescription>
+        <value>Characters</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Template_Pages</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Pages</shortDescription>
+        <value>Pages</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Template_Encoding</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Encoding</shortDescription>
+        <value>Encoding</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Template_EncodingEnglish</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Encoding English</shortDescription>
+        <value>English</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Template_EncodingArabic</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Encoding Arabic</shortDescription>
+        <value>Arabic</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Template_Placeholders</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template: Placeholders</shortDescription>
+        <value>Placeholders</value>
+    </labels>
+    <!-- Log labels -->
+    <labels>
+        <fullName>KwtSMS_Log_Date</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Phone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Message</shortDescription>
+        <value>Message</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Points</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Points</shortDescription>
+        <value>Points</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Event</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Event</shortDescription>
+        <value>Event</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Status</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_FilterStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Filter by Status</shortDescription>
+        <value>Filter by Status</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_FilterEvent</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Filter by Event</shortDescription>
+        <value>Filter by Event</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_FilterDateRange</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Date Range</shortDescription>
+        <value>Date Range</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_Search</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_Log_ClearConfirm</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Log: Clear Confirm</shortDescription>
+        <value>Are you sure you want to delete all logs? This action cannot be undone.</value>
+    </labels>
+    <!-- Gateway test labels -->
+    <labels>
+        <fullName>KwtSMS_GatewayTest_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Gateway Test: Title</shortDescription>
+        <value>Test SMS Gateway</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_GatewayTest_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Gateway Test: Success</shortDescription>
+        <value>SMS sent successfully</value>
+    </labels>
+    <labels>
+        <fullName>KwtSMS_GatewayTest_DefaultMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Gateway Test: Default Message</shortDescription>
+        <value>kwtSMS Gateway Test</value>
+    </labels>
+</CustomLabels>
