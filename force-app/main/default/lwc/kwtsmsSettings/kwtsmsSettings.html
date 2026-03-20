@@ -1,0 +1,211 @@
+<template>
+    <div class="slds-p-around_medium">
+
+        <!-- Section 1: Global Settings -->
+        <lightning-card title="Global Settings" icon-name="utility:settings">
+            <div class="slds-p-around_medium">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_medium">
+                        <lightning-input
+                            type="toggle"
+                            label="Gateway Enabled"
+                            checked={gatewayEnabled}
+                            onchange={handleGatewayToggle}
+                        ></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_medium">
+                        <lightning-combobox
+                            label="Default Language"
+                            value={defaultLanguage}
+                            options={languageOptions}
+                            onchange={handleLanguageChange}
+                        ></lightning-combobox>
+                    </div>
+                </div>
+                <lightning-button
+                    label="Save"
+                    variant="brand"
+                    onclick={handleSaveGlobalSettings}
+                ></lightning-button>
+            </div>
+        </lightning-card>
+
+        <!-- Section 2: Notification Events -->
+        <lightning-card title="Notification Events" icon-name="utility:notification" class="slds-m-top_medium">
+            <div class="slds-p-around_medium">
+                <template if:true={isLoadingEvents}>
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </template>
+                <template if:false={isLoadingEvents}>
+                    <template for:each={eventConfigs} for:item="event">
+                        <div key={event.eventType} class="slds-card slds-card_boundary slds-m-bottom_small">
+                            <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-around_small">
+                                <span class="slds-text-heading_small">{event.label}</span>
+                                <lightning-input
+                                    type="toggle"
+                                    label="Active"
+                                    checked={event.isActive}
+                                    data-event-type={event.eventType}
+                                    onchange={handleEventToggle}
+                                ></lightning-input>
+                            </div>
+                            <div class="slds-card__body slds-p-horizontal_small slds-p-bottom_small">
+                                <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_small">
+                                    <div class="slds-col">
+                                        <lightning-input
+                                            type="checkbox"
+                                            label="Notify Customer"
+                                            checked={event.notifyCustomer}
+                                            data-event-type={event.eventType}
+                                            data-field="notifyCustomer"
+                                            onchange={handleEventCheckbox}
+                                        ></lightning-input>
+                                    </div>
+                                    <div class="slds-col">
+                                        <lightning-input
+                                            type="checkbox"
+                                            label="Notify Admin"
+                                            checked={event.notifyAdmin}
+                                            data-event-type={event.eventType}
+                                            data-field="notifyAdmin"
+                                            onchange={handleEventCheckbox}
+                                        ></lightning-input>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <lightning-button
+                                            label="Edit Template EN"
+                                            variant="neutral"
+                                            data-event-type={event.eventType}
+                                            data-language="en"
+                                            onclick={handleEditTemplate}
+                                        ></lightning-button>
+                                    </div>
+                                    <div class="slds-col">
+                                        <lightning-button
+                                            label="Edit Template AR"
+                                            variant="neutral"
+                                            data-event-type={event.eventType}
+                                            data-language="ar"
+                                            onclick={handleEditTemplate}
+                                        ></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </lightning-card>
+
+        <!-- Section 3: Admin Alert Recipients -->
+        <lightning-card title="Admin Alert Recipients" icon-name="utility:people" class="slds-m-top_medium">
+            <div class="slds-p-around_medium">
+                <!-- Add form -->
+                <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                        <lightning-input
+                            label="Name"
+                            value={newRecipientName}
+                            onchange={handleNewRecipientName}
+                            placeholder="Recipient name"
+                        ></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                        <lightning-input
+                            label="Phone"
+                            value={newRecipientPhone}
+                            onchange={handleNewRecipientPhone}
+                            placeholder="e.g. 96598765432"
+                        ></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-align-bottom">
+                        <lightning-button
+                            label="Add Recipient"
+                            variant="brand"
+                            onclick={handleAddRecipient}
+                            class="slds-m-top_large"
+                        ></lightning-button>
+                    </div>
+                </div>
+
+                <!-- Recipients table -->
+                <template if:true={hasRecipients}>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col"><div class="slds-truncate">Name</div></th>
+                                <th scope="col"><div class="slds-truncate">Phone</div></th>
+                                <th scope="col"><div class="slds-truncate">Active</div></th>
+                                <th scope="col"><div class="slds-truncate">Delete</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={adminRecipients} for:item="recipient">
+                                <tr key={recipient.id}>
+                                    <td>{recipient.name}</td>
+                                    <td>{recipient.phone}</td>
+                                    <td>
+                                        <lightning-input
+                                            type="toggle"
+                                            label=""
+                                            checked={recipient.isActive}
+                                            data-recipient-id={recipient.id}
+                                            onchange={handleToggleRecipient}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <template if:true={recipient.confirmDelete}>
+                                            <span class="slds-text-color_error slds-m-right_x-small">Delete?</span>
+                                            <lightning-button
+                                                label="Yes"
+                                                variant="destructive"
+                                                data-recipient-id={recipient.id}
+                                                onclick={handleConfirmDelete}
+                                                class="slds-m-right_x-small"
+                                            ></lightning-button>
+                                            <lightning-button
+                                                label="No"
+                                                variant="neutral"
+                                                data-recipient-id={recipient.id}
+                                                onclick={handleCancelDelete}
+                                            ></lightning-button>
+                                        </template>
+                                        <template if:false={recipient.confirmDelete}>
+                                            <lightning-button-icon
+                                                icon-name="utility:delete"
+                                                alternative-text="Delete"
+                                                variant="bare"
+                                                data-recipient-id={recipient.id}
+                                                onclick={handleDeleteRecipient}
+                                            ></lightning-button-icon>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={hasRecipients}>
+                    <p class="slds-text-color_weak">No admin recipients configured.</p>
+                </template>
+            </div>
+        </lightning-card>
+
+    </div>
+
+    <!-- Template Modal -->
+    <template if:true={showTemplateModal}>
+        <c-kwtsms-template-modal
+            template-id={activeTemplate.id}
+            template-name={activeTemplate.name}
+            event-type={activeTemplate.eventType}
+            language={activeTemplate.language}
+            body={activeTemplate.body}
+            default-body={activeTemplate.defaultBody}
+            onclose={handleModalClose}
+            onsave={handleModalSave}
+        ></c-kwtsms-template-modal>
+    </template>
+</template>

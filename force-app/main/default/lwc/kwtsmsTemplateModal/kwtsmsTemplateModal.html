@@ -1,0 +1,105 @@
+<template>
+    <!-- Backdrop -->
+    <div class="modal-backdrop" onclick={handleBackdropClick}></div>
+
+    <!-- Modal container -->
+    <section
+        role="dialog"
+        tabindex="-1"
+        aria-modal="true"
+        aria-labelledby="modal-heading"
+        class="slds-modal slds-fade-in-open modal-container"
+    >
+        <div class="slds-modal__container">
+
+            <!-- Header -->
+            <header class="slds-modal__header">
+                <button
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                    title="Close"
+                    onclick={handleCancel}
+                >
+                    <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"></lightning-icon>
+                </button>
+                <h2 id="modal-heading" class="slds-modal__title slds-hyphenate">
+                    Edit Template: {templateName} ({languageLabel})
+                </h2>
+            </header>
+
+            <!-- Body -->
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-grid slds-wrap slds-gutters">
+
+                    <!-- Left: textarea -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_7-of-12">
+                        <label class="slds-form-element__label" for="template-body">Message Body</label>
+                        <div class="slds-form-element__control">
+                            <textarea
+                                id="template-body"
+                                class="slds-textarea template-textarea"
+                                dir="auto"
+                                value={editedBody}
+                                onchange={handleBodyChange}
+                                oninput={handleBodyChange}
+                                placeholder="Enter your SMS message..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Right: placeholders -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12">
+                        <p class="slds-text-title_caps slds-m-bottom_x-small">Available Placeholders</p>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">Click to insert at cursor</p>
+                        <template if:true={hasPlaceholders}>
+                            <ul class="slds-list_dotted">
+                                <template for:each={placeholders} for:item="ph">
+                                    <li key={ph.key}
+                                        class="placeholder-item slds-m-bottom_xx-small"
+                                        data-placeholder={ph.key}
+                                        onclick={handlePlaceholderClick}
+                                    >
+                                        <span class="slds-badge">{ph.key}</span>
+                                        <span class="slds-m-left_x-small slds-text-body_small">{ph.label}</span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                        <template if:false={hasPlaceholders}>
+                            <p class="slds-text-color_weak">No placeholders available.</p>
+                        </template>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="slds-modal__footer slds-grid slds-grid_align-spread">
+                <!-- Left: counter -->
+                <div class="slds-col slds-align-middle">
+                    <span class="slds-text-body_small slds-text-color_weak">{counterText}</span>
+                </div>
+                <!-- Right: actions -->
+                <div class="slds-col slds-text-align_right">
+                    <lightning-button
+                        label="Reset to Default"
+                        variant="neutral"
+                        onclick={handleReset}
+                        class="slds-m-right_x-small"
+                    ></lightning-button>
+                    <lightning-button
+                        label="Cancel"
+                        variant="neutral"
+                        onclick={handleCancel}
+                        class="slds-m-right_x-small"
+                    ></lightning-button>
+                    <lightning-button
+                        label="Save"
+                        variant="brand"
+                        onclick={handleSave}
+                    ></lightning-button>
+                </div>
+            </footer>
+
+        </div>
+    </section>
+</template>

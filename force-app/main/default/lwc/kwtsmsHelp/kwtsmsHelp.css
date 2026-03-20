@@ -1,0 +1,28 @@
+.kwtsms-help__logo {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+.kwtsms-help__steps {
+    padding-left: 1.25rem;
+}
+
+.kwtsms-help__steps .slds-item {
+    line-height: 1.6;
+    color: #3e3e3c;
+}
+
+.kwtsms-help__info-item {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.kwtsms-help__info-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.kwtsms-help__footer {
+    color: #706e6b;
+}

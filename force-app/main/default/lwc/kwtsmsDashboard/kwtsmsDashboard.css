@@ -1,0 +1,79 @@
+/* Status cards row */
+.kwtsms-status-row .slds-card {
+    text-align: center;
+    min-height: 90px;
+}
+
+/* Shared stat card */
+.kwtsms-stat-card .kwtsms-stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #032d60;
+    padding-top: 0.25rem;
+}
+
+.kwtsms-card-label {
+    font-size: 0.7rem;
+    color: #706e6b;
+    letter-spacing: 0.05em;
+}
+
+/* Count cards */
+.kwtsms-count-card {
+    text-align: center;
+    min-height: 80px;
+}
+
+.kwtsms-count-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.kwtsms-count-card_sent .kwtsms-count-value {
+    color: #2e844a;
+}
+
+.kwtsms-count-card_failed .kwtsms-count-value {
+    color: #ba0517;
+}
+
+.kwtsms-count-card_skipped .kwtsms-count-value {
+    color: #706e6b;
+}
+
+/* Badge variants */
+.kwtsms-badge_green {
+    background-color: #2e844a;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.kwtsms-badge_red {
+    background-color: #ba0517;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.kwtsms-badge_gray {
+    background-color: #706e6b;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Recent activity table truncation */
+.kwtsms-truncate {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

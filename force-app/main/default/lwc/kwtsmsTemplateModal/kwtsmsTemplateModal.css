@@ -1,0 +1,41 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+}
+
+.modal-container {
+    z-index: 9001;
+}
+
+.template-textarea {
+    direction: auto;
+    unicode-bidi: plaintext;
+    width: 100%;
+    min-height: 200px;
+    font-family: monospace;
+    font-size: 0.875rem;
+    resize: vertical;
+}
+
+.placeholder-item {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.placeholder-item:hover {
+    background-color: #f3f3f3;
+}
+
+.slds-align-middle {
+    display: flex;
+    align-items: center;
+}

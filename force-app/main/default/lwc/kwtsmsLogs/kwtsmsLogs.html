@@ -1,0 +1,218 @@
+<template>
+    <div class="kwtsms-logs">
+
+        <!-- Filter bar -->
+        <div class="slds-card slds-m-bottom_medium">
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap slds-gutters_small slds-grid_align-spread">
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                        <lightning-combobox
+                            label="Status"
+                            value={statusFilter}
+                            options={statusOptions}
+                            onchange={handleStatusChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                        <lightning-combobox
+                            label="Event Type"
+                            value={eventFilter}
+                            options={eventOptions}
+                            onchange={handleEventChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                        <lightning-combobox
+                            label="Log Level"
+                            value={logLevelFilter}
+                            options={logLevelOptions}
+                            onchange={handleLogLevelChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+                        <lightning-input
+                            type="search"
+                            label="Search"
+                            placeholder="Phone or Message ID"
+                            value={searchTerm}
+                            onchange={handleSearch}>
+                        </lightning-input>
+                    </div>
+                </div>
+
+                <div class="slds-m-top_small">
+                    <lightning-button
+                        label="Apply Filters"
+                        variant="brand"
+                        onclick={handleApplyFilters}>
+                    </lightning-button>
+                    <lightning-button
+                        label="Reset"
+                        variant="neutral"
+                        class="slds-m-left_x-small"
+                        onclick={handleResetFilters}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading logs" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Data table -->
+        <template if:false={isLoading}>
+            <lightning-datatable
+                key-field="Id"
+                data={logs}
+                columns={columns}
+                row-number-offset={offset}
+                onrowaction={handleRowAction}
+                hide-checkbox-column>
+            </lightning-datatable>
+
+            <template if:true={noResults}>
+                <div class="slds-p-around_medium slds-align_absolute-center slds-text-color_weak">
+                    No logs found matching the current filters.
+                </div>
+            </template>
+        </template>
+
+        <!-- Footer -->
+        <div class="slds-grid slds-grid_align-spread slds-m-top_medium kwtsms-logs-footer">
+            <div>
+                <lightning-button
+                    label="Load More"
+                    variant="neutral"
+                    onclick={handleLoadMore}
+                    disabled={isLoading}>
+                </lightning-button>
+            </div>
+            <div>
+                <lightning-button
+                    label="Clear All Logs"
+                    variant="destructive"
+                    onclick={handleClearLogs}
+                    disabled={isLoading}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Clear confirmation modal -->
+        <template if:true={showClearConfirm}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Confirm Clear Logs</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>This will permanently delete all SMS log entries. This action cannot be undone.</p>
+                        <p class="slds-m-top_small slds-text-color_weak">Are you sure you want to continue?</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button
+                            label="Cancel"
+                            variant="neutral"
+                            onclick={handleCancelClear}>
+                        </lightning-button>
+                        <lightning-button
+                            label="Clear All Logs"
+                            variant="destructive"
+                            class="slds-m-left_x-small"
+                            onclick={handleConfirmClear}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- Detail modal -->
+        <template if:true={showDetail}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container kwtsms-detail-modal">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={handleCloseDetail}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium">Log Entry Detail</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <template if:true={selectedLog}>
+                            <dl class="slds-dl_horizontal">
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Date</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.CreatedDate}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Phone</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Phone__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Status</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Status__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Event Type</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Event_Type__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Log Level</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Log_Level__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Points Charged</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Points_Charged__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Balance After</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Balance_After__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Sender ID</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Sender_ID__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Message ID</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Message_ID__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Test Mode</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Test_Mode__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Error Code</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Error_Code__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Error Message</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Error_Message__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Related Record</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Related_Record_ID__c}</dd>
+
+                                <dt class="slds-dl_horizontal__label slds-text-color_weak">Related Object</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedLog.Related_Object_Type__c}</dd>
+                            </dl>
+
+                            <div class="slds-m-top_medium">
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">Message Body</h3>
+                                <div class="kwtsms-detail-body">{selectedLog.Message__c}</div>
+                            </div>
+
+                            <div class="slds-m-top_medium">
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">API Response</h3>
+                                <pre class="kwtsms-detail-pre">{selectedLog.API_Response__c}</pre>
+                            </div>
+                        </template>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button
+                            label="Close"
+                            variant="neutral"
+                            onclick={handleCloseDetail}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </div>
+</template>

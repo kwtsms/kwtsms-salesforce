@@ -1,0 +1,241 @@
+<template>
+    <div class="kwtsms-dashboard">
+        <!-- Loading spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error state -->
+        <template if:true={hasError}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_medium" role="alert">
+                <span class="slds-assistive-text">error</span>
+                <h2>{errorMessage}</h2>
+            </div>
+        </template>
+
+        <template if:true={isReady}>
+
+            <!-- Top row: 5 Status Cards -->
+            <div class="slds-grid slds-wrap slds-gutters_small kwtsms-status-row slds-m-bottom_medium">
+
+                <!-- Balance -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-5 slds-small-size_1-of-2">
+                    <div class="slds-card kwtsms-stat-card">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Balance</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-stat-value">
+                            {formattedBalance}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sender ID -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-5 slds-small-size_1-of-2">
+                    <div class="slds-card kwtsms-stat-card">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Sender ID</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-stat-value">
+                            {data.senderId}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Mode -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-5 slds-small-size_1-of-2">
+                    <div class="slds-card kwtsms-stat-card">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Test Mode</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <span class={testModeBadgeClass}>{testModeLabel}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gateway Status -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-5 slds-small-size_1-of-2">
+                    <div class="slds-card kwtsms-stat-card">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Gateway Status</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <span class={gatewayBadgeClass}>{gatewayLabel}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SMS Enabled -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-5 slds-small-size_1-of-2">
+                    <div class="slds-card kwtsms-stat-card">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">SMS Enabled</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <span class={enabledBadgeClass}>{enabledLabel}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle row: 6 Stat Cards -->
+            <div class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium">
+
+                <!-- Sent Today -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <div class="slds-card kwtsms-count-card kwtsms-count-card_sent">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Sent Today</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-count-value">{data.sentToday}</div>
+                    </div>
+                </div>
+
+                <!-- Failed Today -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <div class="slds-card kwtsms-count-card kwtsms-count-card_failed">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Failed Today</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-count-value">{data.failedToday}</div>
+                    </div>
+                </div>
+
+                <!-- Skipped Today -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <div class="slds-card kwtsms-count-card kwtsms-count-card_skipped">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Skipped Today</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-count-value">{data.skippedToday}</div>
+                    </div>
+                </div>
+
+                <!-- Sent This Week -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <div class="slds-card kwtsms-count-card kwtsms-count-card_sent">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Sent This Week</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-count-value">{data.sentWeek}</div>
+                    </div>
+                </div>
+
+                <!-- Failed This Week -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <div class="slds-card kwtsms-count-card kwtsms-count-card_failed">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Failed This Week</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-count-value">{data.failedWeek}</div>
+                    </div>
+                </div>
+
+                <!-- Skipped This Week -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <div class="slds-card kwtsms-count-card kwtsms-count-card_skipped">
+                        <div class="slds-card__header">
+                            <h2 class="slds-card__header-title slds-text-title_caps kwtsms-card-label">Skipped This Week</h2>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner kwtsms-count-value">{data.skippedWeek}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Configuration row -->
+            <div class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium">
+
+                <!-- Notification Events -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                    <lightning-card title="Notification Events" icon-name="standard:email">
+                        <div class="slds-card__body slds-card__body_inner">
+                            <template if:true={hasEventConfigs}>
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th scope="col"><div class="slds-truncate">Event</div></th>
+                                            <th scope="col"><div class="slds-truncate">Status</div></th>
+                                            <th scope="col"><div class="slds-truncate">Customer</div></th>
+                                            <th scope="col"><div class="slds-truncate">Admin</div></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={eventConfigs} for:item="ec">
+                                            <tr key={ec.Id}>
+                                                <td><div class="slds-truncate">{ec.Label__c}</div></td>
+                                                <td>
+                                                    <span class={ec.statusBadgeClass}>{ec.statusLabel}</span>
+                                                </td>
+                                                <td>
+                                                    <span class={ec.customerBadgeClass}>{ec.customerLabel}</span>
+                                                </td>
+                                                <td>
+                                                    <span class={ec.adminBadgeClass}>{ec.adminLabel}</span>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </template>
+                            <template if:false={hasEventConfigs}>
+                                <p class="slds-text-color_weak">No event configurations found.</p>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+
+                <!-- Admin Recipients -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-card title="Admin Recipients" icon-name="standard:contact">
+                        <div class="slds-card__body slds-card__body_inner">
+                            <template if:true={hasAdminRecipients}>
+                                <ul class="slds-list_dotted">
+                                    <template for:each={adminRecipients} for:item="r">
+                                        <li key={r.Id} class="slds-item">
+                                            <span class="slds-text-body_regular">{r.Name}</span>
+                                            <span class="slds-text-color_weak slds-m-left_x-small">{r.Phone__c}</span>
+                                            <template if:false={r.Active__c}>
+                                                <span class="slds-badge kwtsms-badge_gray slds-m-left_x-small">Inactive</span>
+                                            </template>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                            <template if:false={hasAdminRecipients}>
+                                <p class="slds-text-color_weak">No admin recipients configured.</p>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+            </div>
+
+            <!-- Bottom row: Recent Activity -->
+            <lightning-card title="Recent Activity" icon-name="standard:list_email">
+                <div slot="actions">
+                    <lightning-button
+                        label="View All Logs"
+                        variant="base"
+                        onclick={handleViewAllLogs}>
+                    </lightning-button>
+                </div>
+                <div class="slds-card__body">
+                    <template if:true={hasRecentLogs}>
+                        <lightning-datatable
+                            key-field="Id"
+                            data={recentLogs}
+                            columns={recentLogColumns}
+                            hide-checkbox-column>
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={hasRecentLogs}>
+                        <div class="slds-p-around_medium slds-text-color_weak">No recent log entries.</div>
+                    </template>
+                </div>
+            </lightning-card>
+
+        </template>
+    </div>
+</template>

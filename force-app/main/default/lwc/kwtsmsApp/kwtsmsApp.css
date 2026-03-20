@@ -1,0 +1,18 @@
+.kwtsms-app {
+    background-color: #ffffff;
+    min-height: 100%;
+}
+
+.kwtsms-app__header {
+    border-bottom: 1px solid #dddbda;
+}
+
+.kwtsms-app__logo {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.kwtsms-app__body {
+    padding-top: 0;
+}

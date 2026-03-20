@@ -1,0 +1,51 @@
+.kwtsms-error-message {
+    color: #c23934;
+    font-size: 0.875rem;
+}
+
+.kwtsms-stat-block {
+    background: #f3f3f3;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.kwtsms-stat-label {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0 0 0.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.kwtsms-stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #032d60;
+    margin: 0;
+}
+
+.kwtsms-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.kwtsms-test-result {
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+}
+
+.kwtsms-test-result--success {
+    background: #ecfdf3;
+    border: 1px solid #2e844a;
+    color: #2e844a;
+}
+
+.kwtsms-test-result--error {
+    background: #fef1ee;
+    border: 1px solid #c23934;
+    color: #c23934;
+}

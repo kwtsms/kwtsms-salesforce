@@ -1,0 +1,116 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <!-- Header with logo -->
+            <lightning-layout vertical-align="center" class="slds-m-bottom_large">
+                <lightning-layout-item>
+                    <img src={logoUrl} alt="kwtSMS" class="kwtsms-help__logo" />
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <h1 class="slds-text-heading_large">{label.welcome}</h1>
+                    <p class="slds-text-body_regular slds-m-top_x-small">{label.description}</p>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <lightning-layout multiline="true">
+                <!-- Getting Started -->
+                <lightning-layout-item size="12" medium-device-size="7" padding="around-small">
+                    <lightning-card title="Getting Started" icon-name="utility:steps">
+                        <div class="slds-p-around_medium">
+                            <ol class="kwtsms-help__steps slds-list_ordered">
+                                <li class="slds-item slds-p-vertical_x-small">{label.step1}</li>
+                                <li class="slds-item slds-p-vertical_x-small">{label.step2}</li>
+                                <li class="slds-item slds-p-vertical_x-small">{label.step3}</li>
+                                <li class="slds-item slds-p-vertical_x-small">{label.step4}</li>
+                                <li class="slds-item slds-p-vertical_x-small">{label.step5}</li>
+                                <li class="slds-item slds-p-vertical_x-small">{label.step6}</li>
+                            </ol>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <!-- Key Information -->
+                <lightning-layout-item size="12" medium-device-size="5" padding="around-small">
+                    <lightning-card title="Key Information" icon-name="utility:info">
+                        <div class="slds-p-around_medium">
+                            <div class="kwtsms-help__info-item slds-m-bottom_small">
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{label.testModeLabel}</h3>
+                                <p class="slds-text-body_small">{label.testModeInfo}</p>
+                            </div>
+                            <div class="kwtsms-help__info-item slds-m-bottom_small">
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{label.senderIdLabel}</h3>
+                                <p class="slds-text-body_small">{label.senderIdInfo}</p>
+                            </div>
+                            <div class="kwtsms-help__info-item">
+                                <h3 class="slds-text-heading_small slds-m-bottom_x-small">{label.arabicLabel}</h3>
+                                <p class="slds-text-body_small">{label.arabicInfo}</p>
+                            </div>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <!-- Links -->
+                <lightning-layout-item size="12" padding="around-small">
+                    <lightning-card title="Useful Links" icon-name="utility:link">
+                        <div class="slds-p-around_medium">
+                            <lightning-layout multiline="true">
+                                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" padding="around-x-small">
+                                    <lightning-button
+                                        variant="neutral"
+                                        label="kwtSMS Website"
+                                        icon-name="utility:world"
+                                        onclick={handleWebsite}>
+                                    </lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" padding="around-x-small">
+                                    <lightning-button
+                                        variant="neutral"
+                                        label="Developer API Docs"
+                                        icon-name="utility:code"
+                                        onclick={handleApiDocs}>
+                                    </lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" padding="around-x-small">
+                                    <lightning-button
+                                        variant="neutral"
+                                        label="Support"
+                                        icon-name="utility:help"
+                                        onclick={handleSupport}>
+                                    </lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" padding="around-x-small">
+                                    <lightning-button
+                                        variant="neutral"
+                                        label="Sender ID Help"
+                                        icon-name="utility:identity"
+                                        onclick={handleSenderIdHelp}>
+                                    </lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" padding="around-x-small">
+                                    <lightning-button
+                                        variant="neutral"
+                                        label="FAQ"
+                                        icon-name="utility:question"
+                                        onclick={handleFaq}>
+                                    </lightning-button>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <!-- Footer -->
+            <div class="kwtsms-help__footer slds-m-top_large slds-p-top_medium slds-border_top slds-text-body_small slds-text-color_weak">
+                <lightning-layout vertical-align="center">
+                    <lightning-layout-item flexibility="auto">
+                        {label.version}: 1.0.0
+                    </lightning-layout-item>
+                    <lightning-layout-item>
+                        Security issues: <lightning-formatted-email value="support@kwtsms.com"></lightning-formatted-email>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </div>
+    </lightning-card>
+</template>

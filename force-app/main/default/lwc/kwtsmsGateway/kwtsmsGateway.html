@@ -1,0 +1,138 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+
+    <template if:false={isConnected}>
+        <lightning-card title={labelGatewayLogin} icon-name="utility:connected_apps">
+            <div class="slds-p-around_medium">
+                <lightning-input
+                    label={labelUsername}
+                    value={username}
+                    onchange={handleUsernameChange}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+                <lightning-input
+                    label={labelPassword}
+                    type="password"
+                    value={password}
+                    onchange={handlePasswordChange}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+                <template if:true={loginError}>
+                    <p class="kwtsms-error-message slds-m-bottom_small">{loginError}</p>
+                </template>
+                <lightning-button
+                    label={labelLogin}
+                    variant="brand"
+                    onclick={handleLogin}
+                    disabled={isLoading}
+                ></lightning-button>
+            </div>
+        </lightning-card>
+    </template>
+
+    <template if:true={isConnected}>
+        <lightning-card title={labelGatewayLogin} icon-name="utility:connected_apps">
+            <div class="slds-p-around_medium">
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+                        <div class="kwtsms-stat-block">
+                            <p class="kwtsms-stat-label">{labelBalance}</p>
+                            <p class="kwtsms-stat-value">{formattedBalance}</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+                        <div class="kwtsms-stat-block">
+                            <p class="kwtsms-stat-label">{labelLastSync}</p>
+                            <p class="kwtsms-stat-value">{lastSync}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-m-top_medium">
+                    <lightning-combobox
+                        label={labelSenderId}
+                        value={selectedSenderId}
+                        options={senderIdOptions}
+                        onchange={handleSenderIdChange}
+                        class="slds-m-bottom_small"
+                    ></lightning-combobox>
+                    <lightning-combobox
+                        label={labelDefaultCountryCode}
+                        value={selectedCountryCode}
+                        options={countryCodeOptions}
+                        onchange={handleCountryCodeChange}
+                        class="slds-m-bottom_small"
+                    ></lightning-combobox>
+                    <lightning-input
+                        type="toggle"
+                        label={labelTestMode}
+                        checked={testMode}
+                        onchange={handleTestModeChange}
+                        class="slds-m-bottom_small"
+                    ></lightning-input>
+                    <lightning-input
+                        type="toggle"
+                        label={labelDebugLogging}
+                        checked={debugLogging}
+                        onchange={handleDebugLoggingChange}
+                        class="slds-m-bottom_small"
+                    ></lightning-input>
+                </div>
+
+                <div class="slds-m-top_medium kwtsms-button-row">
+                    <lightning-button
+                        label={labelLogout}
+                        variant="destructive"
+                        onclick={handleLogout}
+                        disabled={isLoading}
+                        class="slds-m-right_small"
+                    ></lightning-button>
+                    <lightning-button
+                        label={labelReload}
+                        variant="neutral"
+                        onclick={handleReload}
+                        disabled={isLoading}
+                        class="slds-m-right_small"
+                    ></lightning-button>
+                    <lightning-button
+                        label={labelSave}
+                        variant="brand"
+                        onclick={handleSaveSettings}
+                        disabled={isLoading}
+                    ></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+
+        <lightning-card title={labelGatewayTestTitle} icon-name="utility:send" class="slds-m-top_medium">
+            <div class="slds-p-around_medium">
+                <lightning-input
+                    label={labelPhone}
+                    value={testPhone}
+                    onchange={handleTestPhoneChange}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+                <lightning-input
+                    label={labelMessage}
+                    value={testMessage}
+                    onchange={handleTestMessageChange}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+                <lightning-button
+                    label={labelSendTestSms}
+                    variant="brand"
+                    onclick={handleSendTestSMS}
+                    disabled={isLoading}
+                    class="slds-m-bottom_medium"
+                ></lightning-button>
+                <template if:true={testResult}>
+                    <div class={testResultClass}>
+                        <p>{testResult}</p>
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </template>
+</template>
