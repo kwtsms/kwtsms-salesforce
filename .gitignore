@@ -1,0 +1,38 @@
+# Salesforce DX
+.sf/
+.sfdx/
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Claude / Local private files
+.claude/
+CLAUDE.md
+napkin.md
+
+# Docs and tests (local only)
+docs/
+tests/
+
+# Git worktrees
+.worktrees/
+
+# Docker
+docker/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and archives
+*.log
+*.zip
+
+# Node
+node_modules/
