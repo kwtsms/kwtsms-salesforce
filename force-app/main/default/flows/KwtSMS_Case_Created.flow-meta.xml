@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <label>kwtSMS Case Created</label>
+    <description>Sends SMS notification when a Case is created</description>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Handle_SMS_Event</targetReference>
+        </connector>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <actionCalls>
+        <name>Handle_SMS_Event</name>
+        <label>Handle SMS Event</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <actionName>KwtSMSFlowHandler</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>eventType</name>
+            <value>
+                <stringValue>Case_Created</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectType</name>
+            <value>
+                <stringValue>Case</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>kwtSMS Case Created {!$Flow.CurrentDateTime}</interviewLabel>
+</Flow>
