@@ -1,5 +1,13 @@
 # kwtSMS SMS Gateway for Salesforce
 
+[![Salesforce](https://img.shields.io/badge/Salesforce-00A1E0?style=flat&logo=salesforce&logoColor=white)](https://appexchange.salesforce.com)
+[![Version](https://img.shields.io/badge/version-0.5.0-blue)](https://github.com/boxlinknet/kwtsms-salesforce/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Apex](https://img.shields.io/badge/Apex-API%2060.0-blueviolet)](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/)
+[![LWC](https://img.shields.io/badge/LWC-Lightning%20Web%20Components-orange)](https://developer.salesforce.com/docs/platform/lwc/guide/)
+[![kwtSMS](https://img.shields.io/badge/kwtSMS-SMS%20Gateway-FFA200)](https://kwtsms.com)
+[![Arabic Support](https://img.shields.io/badge/i18n-English%20%7C%20Arabic-success)](https://kwtsms.com)
+
 A free Salesforce AppExchange plugin that integrates the kwtSMS SMS gateway into your Salesforce org, enabling automated SMS notifications for orders, cases, and custom flows.
 
 ## Features
@@ -29,7 +37,7 @@ Once published, install directly from AppExchange with one click. No code deploy
 
 1. After installation, open the **kwtSMS** Lightning App from the App Launcher.
 2. Go to the **Settings** tab and enter your kwtSMS API credentials.
-3. Click **Connect** on the **Gateway** tab to validate the connection.
+3. Click **Login** on the **Gateway** tab to validate the connection.
 4. Configure notification templates on the **Settings** tab.
 5. Assign the `KwtSMS Admin` or `KwtSMS User` permission set to relevant users.
 

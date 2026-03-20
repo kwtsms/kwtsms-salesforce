@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] - 2026-03-20
+## [0.5.0] - 2026-03-20
 
 ### Added
 - 5-tab admin UI: Dashboard, Settings, Gateway, Logs, Help
