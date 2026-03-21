@@ -7,13 +7,15 @@
 .vscode/
 *.code-workspace
 
-# Claude / Local private files
+# Claude / AI / Local private files
 .claude/
 CLAUDE.md
 napkin.md
+.superpowers/
 
 # Docs and tests (local only)
 docs/
+test/
 tests/
 
 # Git worktrees
@@ -21,6 +23,14 @@ tests/
 
 # Docker
 docker/
+docker-compose*.yml
+Dockerfile
+
+# Playwright
+.playwright/
+.playwright-*
+playwright-report/
+test-results/
 
 # Environment
 .env
@@ -29,10 +39,33 @@ docker/
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Logs and archives
 *.log
 *.zip
+*.tar.gz
 
 # Node
 node_modules/
+package-lock.json
+
+# Java / Apex compiled
+*.class
+*.jar
+
+# Python (if scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~
