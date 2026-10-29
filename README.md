@@ -1,7 +1,7 @@
 # kwtSMS SMS Gateway for Salesforce
 
 [![Salesforce](https://img.shields.io/badge/Salesforce-00A1E0?style=flat&logo=salesforce&logoColor=white)](https://appexchange.salesforce.com)
-[![Version](https://img.shields.io/badge/version-0.5.0-blue)](https://github.com/boxlinknet/kwtsms-salesforce/releases)
+[![Version](https://img.shields.io/badge/version-0.5.0-blue)](https://github.com/kwtsms/kwtsms-salesforce/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Apex](https://img.shields.io/badge/Apex-API%2060.0-blueviolet)](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/)
 [![LWC](https://img.shields.io/badge/LWC-Lightning%20Web%20Components-orange)](https://developer.salesforce.com/docs/platform/lwc/guide/)
