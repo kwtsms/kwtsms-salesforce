@@ -12,7 +12,8 @@ private class KwtSMSEngineTest {
         config.Debug_Logging__c = true;
         config.Default_Language__c = 'en';
         config.Default_Country_Code__c = '965';
-        config.Cached_Coverage__c = '["965","966","971"]';
+        // 2026-11-05 10:08 +03: test number is now 99912345678 (country code 999 is unassigned), so 999 joins the coverage fixture; replaces a real person's number, int-testnumber
+        config.Cached_Coverage__c = '["965","966","971","999"]';
         config.Cached_Sender_IDs__c = '["KWT-SMS"]';
         insert config;
     }
@@ -37,7 +38,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Hello', null);
+            new List<String>{ '99912345678' }, 'Hello', null);
         Test.stopTest();
 
         System.assertEquals('Skipped', result.status,
@@ -53,7 +54,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Hello', null);
+            new List<String>{ '99912345678' }, 'Hello', null);
         Test.stopTest();
 
         System.assertEquals('Failed', result.status,
@@ -69,7 +70,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Hello', null);
+            new List<String>{ '99912345678' }, 'Hello', null);
         Test.stopTest();
 
         System.assertEquals('Failed', result.status,
@@ -99,7 +100,7 @@ private class KwtSMSEngineTest {
 
     @IsTest
     static void testSend_uncoveredCountry_skipped() {
-        // UK number not in coverage list (coverage is 965, 966, 971)
+        // UK number not in coverage list (coverage is 965, 966, 971, 999)
         Test.setMock(HttpCalloutMock.class, KwtSMSCalloutMock.sendSuccess());
 
         Test.startTest();
@@ -138,7 +139,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Test message', null);
+            new List<String>{ '99912345678' }, 'Test message', null);
         Test.stopTest();
 
         System.assertEquals('Sent', result.status,
@@ -157,7 +158,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Test message', null);
+            new List<String>{ '99912345678' }, 'Test message', null);
         Test.stopTest();
 
         System.assertEquals('Sent', result.status,
@@ -174,7 +175,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Test message', null);
+            new List<String>{ '99912345678' }, 'Test message', null);
         Test.stopTest();
 
         System.assertEquals('Failed', result.status,
@@ -197,7 +198,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432', '96598765432' }, 'Hello', null);
+            new List<String>{ '99912345678', '99912345678' }, 'Hello', null);
         Test.stopTest();
 
         System.assertEquals('Sent', result.status,
@@ -214,7 +215,7 @@ private class KwtSMSEngineTest {
         Test.startTest();
         // Message with HTML tags - cleanMessage strips them
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, '<b>Hi</b>', null);
+            new List<String>{ '99912345678' }, '<b>Hi</b>', null);
         Test.stopTest();
 
         // If HTML caused an issue the send would fail; Sent means cleaning worked
@@ -233,7 +234,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, longMsg, null);
+            new List<String>{ '99912345678' }, longMsg, null);
         Test.stopTest();
 
         System.assertEquals('Failed', result.status,
@@ -248,7 +249,7 @@ private class KwtSMSEngineTest {
 
         Test.startTest();
         KwtSMSEngine.SendResult result = KwtSMSEngine.send(
-            new List<String>{ '96598765432' }, 'Hello', 'MY-BRAND');
+            new List<String>{ '99912345678' }, 'Hello', 'MY-BRAND');
         Test.stopTest();
 
         // A successful send confirms the custom sender ID was accepted and passed through

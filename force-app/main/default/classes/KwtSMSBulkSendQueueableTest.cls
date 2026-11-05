@@ -12,18 +12,21 @@ private class KwtSMSBulkSendQueueableTest {
         config.Debug_Logging__c = true;
         config.Default_Language__c = 'en';
         config.Default_Country_Code__c = '965';
-        config.Cached_Coverage__c = '["965","966","971"]';
+        // 2026-11-05 10:08 +03: 999 joins the coverage fixture for the synthetic 999 range below, int-testnumber
+        config.Cached_Coverage__c = '["965","966","971","999"]';
         config.Cached_Sender_IDs__c = '["KWT-SMS"]';
         insert config;
     }
 
-    // Build a list of valid Kuwait phone numbers of a given size
+    // Build a list of valid phone numbers of a given size
+    // 2026-11-05 10:08 +03: was a generated Kuwait mobile-shaped range (real people); now 9991234xxxx,
+    // 11 digits in unassigned country code 999, which passes verify() and the coverage fixture, int-testnumber
     private static List<String> buildPhones(Integer count) {
         List<String> phones = new List<String>();
         for (Integer i = 0; i < count; i++) {
-            // Vary last 4 digits, keep valid Kuwait mobile prefix (9655xxxx)
+            // Vary last 4 digits under the unassigned 999 country code (9991234xxxx)
             String suffix = String.valueOf(1000 + Math.mod(i, 9000)).left(4);
-            phones.add('9655' + suffix);
+            phones.add('9991234' + suffix);
         }
         return phones;
     }

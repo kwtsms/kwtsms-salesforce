@@ -13,8 +13,9 @@ private class KwtSMSLoggerTest {
     @IsTest
     static void testLogSend_addsToBuffer() {
         KwtSMSLogger.clearBuffer();
+        // 2026-11-05 10:08 +03: pass-through placeholder 965XXXXXXXX replaces a real person's number, int-testnumber
         KwtSMSLogger.logSend(
-            '96598765432', 'Hello World', 'Sent',
+            '965XXXXXXXX', 'Hello World', 'Sent',
             null, null, 'SMS_Send',
             'MSG001', 1.0, 99.0,
             null, null,

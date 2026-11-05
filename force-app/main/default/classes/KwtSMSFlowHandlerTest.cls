@@ -12,7 +12,8 @@ private class KwtSMSFlowHandlerTest {
         config.Debug_Logging__c = false;
         config.Default_Language__c = 'en';
         config.Default_Country_Code__c = '965';
-        config.Cached_Coverage__c = '["965","966","971"]';
+        // 2026-11-05 10:08 +03: admin test number is now 99912345678 (country code 999 is unassigned), so 999 joins the coverage fixture; replaces a real person's number, int-testnumber
+        config.Cached_Coverage__c = '["965","966","971","999"]';
         config.Cached_Sender_IDs__c = '["KWT-SMS"]';
         insert config;
 
@@ -155,7 +156,7 @@ private class KwtSMSFlowHandlerTest {
         update cfg;
 
         Admin_Alert_Recipient__c recipient = new Admin_Alert_Recipient__c();
-        recipient.Phone__c = '96598765432';
+        recipient.Phone__c = '99912345678';
         recipient.Active__c = true;
         insert recipient;
 

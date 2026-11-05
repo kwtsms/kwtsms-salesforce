@@ -4,7 +4,8 @@ private class KwtSMSClientTest {
     private static final String TEST_USERNAME = 'testuser';
     private static final String TEST_PASSWORD = 'testpass';
     private static final String TEST_SENDER  = 'KWT-SMS';
-    private static final String TEST_MOBILE  = '96598765432';
+    // 2026-11-05 10:08 +03: pass-through placeholder (client does not validate, mock ignores it), replaces a real person's number, int-testnumber
+    private static final String TEST_MOBILE  = '965XXXXXXXX';
 
     @IsTest
     static void testSend_success() {
@@ -103,14 +104,14 @@ private class KwtSMSClientTest {
         Test.setMock(HttpCalloutMock.class, KwtSMSCalloutMock.validateSuccess());
         Test.startTest();
         KwtSMSClient.ValidateResponse resp = KwtSMSClient.validateNumbers(
-            TEST_MOBILE + ',0096598765432,966558724477', TEST_USERNAME, TEST_PASSWORD);
+            TEST_MOBILE + ',00965XXXXXXXX,966558724477', TEST_USERNAME, TEST_PASSWORD);
         Test.stopTest();
 
         System.assertEquals('OK', resp.result, 'Result should be OK on validate success');
         System.assertEquals(1, resp.okNumbers.size(), 'okNumbers should have 1 entry');
-        System.assertEquals('96598765432', resp.okNumbers[0], 'okNumbers[0] should match valid number');
+        System.assertEquals('965XXXXXXXX', resp.okNumbers[0], 'okNumbers[0] should match valid number');
         System.assertEquals(1, resp.erNumbers.size(), 'erNumbers should have 1 entry');
-        System.assertEquals('0096598765432', resp.erNumbers[0], 'erNumbers[0] should match ER number');
+        System.assertEquals('00965XXXXXXXX', resp.erNumbers[0], 'erNumbers[0] should match ER number');
         System.assertEquals(1, resp.nrNumbers.size(), 'nrNumbers should have 1 entry');
         System.assertEquals('966558724477', resp.nrNumbers[0], 'nrNumbers[0] should match NR number');
     }

@@ -12,7 +12,8 @@ private class KwtSMSSendActionTest {
         config.Debug_Logging__c = true;
         config.Default_Language__c = 'en';
         config.Default_Country_Code__c = '965';
-        config.Cached_Coverage__c = '["965","966","971"]';
+        // 2026-11-05 10:08 +03: test number is now 99912345678 (country code 999 is unassigned), so 999 joins the coverage fixture; replaces a real person's number, int-testnumber
+        config.Cached_Coverage__c = '["965","966","971","999"]';
         config.Cached_Sender_IDs__c = '["KWT-SMS"]';
         insert config;
     }
@@ -35,7 +36,7 @@ private class KwtSMSSendActionTest {
         Test.setMock(HttpCalloutMock.class, KwtSMSCalloutMock.sendSuccess());
 
         KwtSMSSendAction.SMSRequest req = new KwtSMSSendAction.SMSRequest();
-        req.phoneNumber = '96598765432';
+        req.phoneNumber = '99912345678';
         req.messageBody = 'Hello from Flow';
         req.senderId = 'KWT-SMS';
 
@@ -60,7 +61,7 @@ private class KwtSMSSendActionTest {
         Test.setMock(HttpCalloutMock.class, KwtSMSCalloutMock.sendSuccess());
 
         KwtSMSSendAction.SMSRequest req1 = new KwtSMSSendAction.SMSRequest();
-        req1.phoneNumber = '96598765432';
+        req1.phoneNumber = '99912345678';
         req1.messageBody = 'Message 1';
 
         KwtSMSSendAction.SMSRequest req2 = new KwtSMSSendAction.SMSRequest();
@@ -89,7 +90,7 @@ private class KwtSMSSendActionTest {
         Test.setMock(HttpCalloutMock.class, KwtSMSCalloutMock.sendSuccess());
 
         KwtSMSSendAction.SMSRequest req = new KwtSMSSendAction.SMSRequest();
-        req.phoneNumber = '96598765432';
+        req.phoneNumber = '99912345678';
         req.messageBody = 'Test output variables';
         req.senderId = null;
 
@@ -123,7 +124,7 @@ private class KwtSMSSendActionTest {
         Test.setMock(HttpCalloutMock.class, KwtSMSCalloutMock.sendSuccess());
 
         KwtSMSSendAction.SMSRequest req = new KwtSMSSendAction.SMSRequest();
-        req.phoneNumber = '96598765432';
+        req.phoneNumber = '99912345678';
         req.messageBody = 'Should not be sent';
         req.senderId = null;
 

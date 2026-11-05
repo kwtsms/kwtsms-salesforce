@@ -66,7 +66,8 @@ private class KwtSMSControllerTest {
         config.Default_Country_Code__c = '965';
         config.Default_Language__c = 'en';
         config.Cached_Sender_IDs__c = '["KWT-SMS"]';
-        config.Cached_Coverage__c = '["965"]';
+        // 2026-11-05 10:08 +03: test numbers are now 99912345678/99912345679 (country code 999 is unassigned) so 999 is added to the coverage fixture; log rows use the 965XXXXXXXX placeholder; replaces a real person's number, int-testnumber
+        config.Cached_Coverage__c = '["965","999"]';
         upsert config;
 
         // Event configs
@@ -110,7 +111,7 @@ private class KwtSMSControllerTest {
         // Admin recipients
         Admin_Alert_Recipient__c recipient = new Admin_Alert_Recipient__c(
             Name = 'Test Admin',
-            Phone__c = '96598765432',
+            Phone__c = '99912345678',
             Active__c = true
         );
         insert recipient;
@@ -355,7 +356,7 @@ private class KwtSMSControllerTest {
 
         System.assertNotEquals(null, recipients, 'Recipients should not be null');
         System.assertEquals(1, recipients.size(), 'Should have 1 recipient');
-        System.assertEquals('96598765432', recipients[0].Phone__c, 'Phone number mismatch');
+        System.assertEquals('99912345678', recipients[0].Phone__c, 'Phone number mismatch');
     }
 
     // =========================================================
@@ -364,13 +365,13 @@ private class KwtSMSControllerTest {
     @IsTest
     static void testAddAdminRecipient() {
         Test.startTest();
-        // 96596543210 is a valid Kuwait mobile: 965 + 9 prefix (valid) = 11 digits
-        Admin_Alert_Recipient__c newRecipient = KwtSMSController.addAdminRecipient('New Admin', '96596543210');
+        // 99912345679 passes verify(): 11 digits, not all the same, not 965 (country code 999 is unassigned)
+        Admin_Alert_Recipient__c newRecipient = KwtSMSController.addAdminRecipient('New Admin', '99912345679');
         Test.stopTest();
 
         System.assertNotEquals(null, newRecipient, 'New recipient should not be null');
         System.assertNotEquals(null, newRecipient.Id, 'New recipient should have an Id');
-        System.assertEquals('96596543210', newRecipient.Phone__c, 'Phone number mismatch');
+        System.assertEquals('99912345679', newRecipient.Phone__c, 'Phone number mismatch');
     }
 
     // =========================================================
@@ -381,7 +382,7 @@ private class KwtSMSControllerTest {
         Boolean exceptionThrown = false;
         Test.startTest();
         try {
-            KwtSMSController.addAdminRecipient('Dup Admin', '96598765432');
+            KwtSMSController.addAdminRecipient('Dup Admin', '99912345678');
         } catch (AuraHandledException e) {
             exceptionThrown = true;
         }
@@ -395,7 +396,7 @@ private class KwtSMSControllerTest {
     // =========================================================
     @IsTest
     static void testDeleteAdminRecipient() {
-        Admin_Alert_Recipient__c r = [SELECT Id FROM Admin_Alert_Recipient__c WHERE Phone__c = '96598765432' LIMIT 1];
+        Admin_Alert_Recipient__c r = [SELECT Id FROM Admin_Alert_Recipient__c WHERE Phone__c = '99912345678' LIMIT 1];
 
         Test.startTest();
         KwtSMSController.deleteAdminRecipient(r.Id);
@@ -410,7 +411,7 @@ private class KwtSMSControllerTest {
     // =========================================================
     @IsTest
     static void testToggleAdminRecipient() {
-        Admin_Alert_Recipient__c r = [SELECT Id, Active__c FROM Admin_Alert_Recipient__c WHERE Phone__c = '96598765432' LIMIT 1];
+        Admin_Alert_Recipient__c r = [SELECT Id, Active__c FROM Admin_Alert_Recipient__c WHERE Phone__c = '99912345678' LIMIT 1];
         System.assertEquals(true, r.Active__c, 'Should start active');
 
         Test.startTest();
@@ -434,7 +435,7 @@ private class KwtSMSControllerTest {
         Test.setMock(HttpCalloutMock.class, mock);
 
         Test.startTest();
-        Map<String, Object> result = KwtSMSController.sendTestSMS('96598765432', 'Test message');
+        Map<String, Object> result = KwtSMSController.sendTestSMS('99912345678', 'Test message');
         Test.stopTest();
 
         System.assertNotEquals(null, result, 'Result should not be null');
@@ -449,7 +450,7 @@ private class KwtSMSControllerTest {
     static void testGetLogs() {
         // Insert a log record
         SMS_Log__c log = new SMS_Log__c(
-            Phone__c = '96598765432',
+            Phone__c = '965XXXXXXXX',
             Message__c = 'Test log',
             Status__c = 'Sent',
             Event_Type__c = 'OrderConfirmed',
@@ -474,7 +475,7 @@ private class KwtSMSControllerTest {
         List<SMS_Log__c> logsToInsert = new List<SMS_Log__c>();
         for (Integer i = 0; i < 5; i++) {
             logsToInsert.add(new SMS_Log__c(
-                Phone__c = '96598765432',
+                Phone__c = '965XXXXXXXX',
                 Message__c = 'Log ' + i,
                 Status__c = 'Sent',
                 Log_Level__c = 'INFO'

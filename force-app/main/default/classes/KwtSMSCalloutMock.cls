@@ -38,8 +38,9 @@ public class KwtSMSCalloutMock implements HttpCalloutMock {
     }
 
     public static KwtSMSCalloutMock validateSuccess() {
+        // 2026-11-05 10:08 +03: OK/ER numbers are now 965XXXXXXXX placeholders (pass-through only), the old sample belonged to a real person, int-testnumber
         return new KwtSMSCalloutMock(
-            '{"result":"OK","mobile":{"OK":["96598765432"],"ER":["0096598765432"],"NR":["966558724477"]}}', 200);
+            '{"result":"OK","mobile":{"OK":["965XXXXXXXX"],"ER":["00965XXXXXXXX"],"NR":["966558724477"]}}', 200);
     }
 
     public static KwtSMSCalloutMock authError() {

@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- Sample phone numbers in the admin recipient placeholder and in tests replaced with the placeholder 965XXXXXXXX and the unassigned test number 99912345678.
+
 ## [0.5.0] - 2026-03-20
 
 ### Added

@@ -24,7 +24,8 @@ private class KwtSMSTemplateEngineTest {
         // Create Account and Contact
         Account acc = new Account(Name = 'Test Company');
         insert acc;
-        Contact con = new Contact(FirstName = 'Ahmed', LastName = 'Ali', AccountId = acc.Id, Phone = '96598765432');
+        // 2026-11-05 10:08 +03: pass-through placeholder 965XXXXXXXX replaces a real person's number, int-testnumber
+        Contact con = new Contact(FirstName = 'Ahmed', LastName = 'Ali', AccountId = acc.Id, Phone = '965XXXXXXXX');
         insert con;
 
         // Create Order (requires Account and Pricebook)
