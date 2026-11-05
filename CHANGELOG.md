@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- Requests to kwtSMS carry the integration name and version (no personal data) so kwtSMS can see which integrations are in use.
+
 ### Changed
 - Sample phone numbers in the admin recipient placeholder and in tests replaced with the placeholder 965XXXXXXXX and the unassigned test number 99912345678.
 

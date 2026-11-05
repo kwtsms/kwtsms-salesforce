@@ -154,14 +154,38 @@ private class KwtSMSClientTest {
             'Request body should include test flag set to 1 when testMode is true');
     }
 
+    // 2026-11-05 15:00 +03: every call names the integration in the User-Agent and the "client" field, #939.
+    @IsTest
+    static void testRequest_identifiesIntegration() {
+        HeaderCaptureMock captureMock = new HeaderCaptureMock();
+        Test.setMock(HttpCalloutMock.class, captureMock);
+        Test.startTest();
+        KwtSMSClient.getBalance(TEST_USERNAME, TEST_PASSWORD);
+        Test.stopTest();
+
+        System.assert(Pattern.matches('kwtsms-salesforce/[0-9][0-9A-Za-z.+-]*', KwtSMSClient.USER_AGENT),
+            'Token should be kwtsms-salesforce/<version>');
+        System.assertEquals(KwtSMSClient.USER_AGENT, captureMock.capturedUserAgent,
+            'User-Agent header should carry the integration token');
+        Map<String, Object> sent = (Map<String, Object>) JSON.deserializeUntyped(captureMock.capturedBody);
+        System.assertEquals(KwtSMSClient.USER_AGENT, sent.get('client'),
+            'Body client field should carry the integration token');
+        System.assertEquals(TEST_USERNAME, sent.get('username'), 'Original fields should be kept');
+    }
+
     // Helper mocks for header/method/body capture
 
     private class HeaderCaptureMock implements HttpCalloutMock {
         public String capturedContentType;
         public String capturedAccept;
+        // 2026-11-05 15:00 +03: also capture the User-Agent and the body for the integration token test, #939.
+        public String capturedUserAgent;
+        public String capturedBody;
         public HttpResponse respond(HttpRequest req) {
             this.capturedContentType = req.getHeader('Content-Type');
             this.capturedAccept      = req.getHeader('Accept');
+            this.capturedUserAgent   = req.getHeader('User-Agent');
+            this.capturedBody        = req.getBody();
             HttpResponse res = new HttpResponse();
             res.setStatusCode(200);
             res.setBody('{"result":"OK","msg-id":"abc123def456","numbers":1,"points-charged":1,"balance-after":149,"unix-timestamp":1684763355}');

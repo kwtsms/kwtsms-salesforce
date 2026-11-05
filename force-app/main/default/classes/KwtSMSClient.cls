@@ -1,6 +1,11 @@
 public with sharing class KwtSMSClient {
     private static final String BASE_URL = 'https://www.kwtsms.com/API/';
     private static final Integer TIMEOUT_MS = 30000;
+    // 2026-11-05 15:00 +03: integration name and version sent to kwtSMS on every call (User-Agent and the
+    // "client" body field), no personal data, so kwtSMS can count accounts per integration, #939.
+    // Apex cannot read sfdx-project.json at runtime: keep equal to its versionNumber (major.minor.patch).
+    @TestVisible
+    private static final String USER_AGENT = 'kwtsms-salesforce/0.5.0';
 
     // Response wrapper classes
     public class SendResponse {
@@ -120,6 +125,9 @@ public with sharing class KwtSMSClient {
         req.setMethod('POST');
         req.setHeader('Content-Type', 'application/json');
         req.setHeader('Accept', 'application/json');
+        // 2026-11-05 15:00 +03: identify the integration in the header and the body, #939.
+        req.setHeader('User-Agent', USER_AGENT);
+        body.put('client', USER_AGENT);
         req.setTimeout(TIMEOUT_MS);
         req.setBody(JSON.serialize(body));
 
