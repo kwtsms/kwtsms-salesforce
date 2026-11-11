@@ -3,21 +3,16 @@
 ## [Unreleased]
 
 ### Added
-- Requests to kwtSMS carry the integration name and version (no personal data) so kwtSMS can see which integrations are in use.
-
-### Changed
-- Sample phone numbers in the admin recipient placeholder and in tests replaced with the placeholder 965XXXXXXXX and the unassigned test number 99912345678.
+- Integration name and version sent with requests.
 
 ## [0.5.0] - 2026-03-20
 
 ### Added
-- 5-tab admin UI: Dashboard, Settings, Gateway, Logs, Help
-- Gateway login/logout with credential validation
-- SMS notifications for Order Created/Updated and Case Created/Updated
-- Flow Builder integration via "Send SMS via kwtSMS" invocable action
-- SMS template management with placeholder support
-- Admin alert recipients management
-- Daily sync job for balance, sender IDs, and coverage
-- Full SMS logging with filtering
-- English and Arabic language support
-- Bulk SMS with Queueable overflow handling
+- Admin UI with dashboard, settings, gateway, logs and help.
+- Gateway login.
+- SMS notifications for orders and cases.
+- Flow Builder action.
+- Templates, admin alert recipients and logs.
+- Daily sync.
+- English and Arabic support.
+- Bulk SMS.
