@@ -10,6 +10,8 @@
 
 A free Salesforce AppExchange plugin that integrates the kwtSMS SMS gateway into your Salesforce org, enabling automated SMS notifications for orders, cases, and custom flows.
 
+All kwtSMS integrations: [kwtsms.com/integrations](https://www.kwtsms.com/integrations/)
+
 ## Features
 
 - **5-tab admin UI**: Dashboard, Settings, Gateway, Logs, Help, all inside a single Lightning App
