@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/readme-header-dark.png">
+  <img alt="kwtSMS for Salesforce" src=".github/assets/readme-header-light.png">
+</picture>
+
 # kwtSMS SMS Gateway for Salesforce
 
 [![Salesforce](https://img.shields.io/badge/Salesforce-00A1E0?style=flat&logo=salesforce&logoColor=white)](https://appexchange.salesforce.com)
